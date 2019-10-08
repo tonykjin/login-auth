@@ -1,6 +1,12 @@
+import Link from 'next/link';
+
 const Home = () => {
   return (
-    <div> Base - Master branch </div>
+    <div>
+      <Link href="/login">
+        <a>Login</a>
+      </Link>
+    </div>
   )
 }
 
