@@ -1,1 +1,0 @@
-{"ast":null,"code":"import Link from 'next/link';","map":{"version":3,"sources":["/mnt/c/Users/TonyJin/kush_dev/login-auth/pages/header.js"],"names":["Link"],"mappings":"AAAA,OAAOA,IAAP,MAAiB,WAAjB","sourcesContent":["import Link from 'next/link';\n"]},"metadata":{},"sourceType":"module"}
