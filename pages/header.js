@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Navbar, NavbarBrand, Nav, NavItem } from 'reactstrap';
+import { Navbar, Nav, NavItem } from 'reactstrap';
 
 const Header = () => {
   return (
@@ -11,8 +11,13 @@ const Header = () => {
         <Nav className="ml-auto" navbar>
           <NavItem>
             <Link href="/login">
-              Login
+              <a>Login</a>
             </Link>
+          </NavItem>
+          <NavItem>
+          <Link href="/signup">
+            <a>Sign Up</a>
+          </Link>
           </NavItem>
         </Nav>
       </Navbar>
