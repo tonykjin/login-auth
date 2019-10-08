@@ -1,11 +1,11 @@
 import Link from 'next/link';
+import Header from './header';
 
 const Home = () => {
   return (
     <div>
-      <Link href="/login">
-        <a>Login</a>
-      </Link>
+      <Header/>
+      Welcome to login-auth!
     </div>
   )
 }
