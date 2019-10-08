@@ -27,7 +27,7 @@ export default class Login extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <FormGroup controlId="email" bsSize="large">
             <FormControl
-              autofocus
+              autoFocus
               placeholder="email"
               type="email"
               value={this.state.email}
