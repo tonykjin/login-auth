@@ -22,12 +22,15 @@ export default class Signup extends React.Component {
   }
   handleChange = event => {
     this.setState({
-      [event.target.id]: event.target.value
+      [event.target.name]: event.target.value
     });
   }
   handleSubmit = event => {
     event.preventDefault();
-    //fetch (post)
+    const { name, email, password } = this.state;
+    fetch(`http://localhost:8080/new/user?name=${name}&email=${email}&password=${password}`, { method: "POST" })
+      .then(response => console.log(response))
+      .catch(err => console.error(err));
   }
   render() {
     return (
@@ -40,12 +43,14 @@ export default class Signup extends React.Component {
             type="email"
             value={this.state.email}
             onChange={this.handleChange}
+            name="email"
           />
         </FormGroup>
         <FormGroup>
-          <Label for="email">Password</Label>
+          <Label for="password">Password</Label>
           <FormControl
             autoFocus
+            name="password"
             placeholder="password"
             type="password"
             value={this.state.password}
@@ -53,10 +58,11 @@ export default class Signup extends React.Component {
           />
         </FormGroup>
         <FormGroup>
-          <Label for="password2">re-type password</Label>
+          <Label for="passwordDuplicate">re-type password</Label>
           <FormControl
             autoFocus
-            placeholder="password2"
+            name="passwordDuplicate"
+            placeholder="passwordDuplicate"
             type="password"
             value={this.state.passwordDuplicate}
             onChange={this.handleChange}
@@ -66,6 +72,7 @@ export default class Signup extends React.Component {
           <Label for="name">Name</Label>
           <FormControl
             autoFocus
+            name="name"
             placeholder="name"
             type="name"
             value={this.state.name}
@@ -73,9 +80,9 @@ export default class Signup extends React.Component {
           />
         </FormGroup>
         <Button
-          bsSize="medium"
           disabled={!this.validateForm()}
           type="submit"
+          onClick={this.handleSubmit}
         >
           Sign Up
         </Button>

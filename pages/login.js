@@ -14,28 +14,33 @@ export default class Login extends React.Component {
   }
   handleChange = event => {
     this.setState({
-      [event.target.id]: event.target.value
+      [event.target.name]: event.target.value
     });
   }
   handleSubmit = event => {
     event.preventDefault();
-    //fetch
+    const { email, password } = this.state;
+    fetch(`http://localhost:8080/login?email=${email}&password=${password}`, { method: "GET" })
+      .then(response => console.log(response))
+      .catch(err => console.error(err));
   }
   render() {
     return (
       <div className="Login">
         <form onSubmit={this.handleSubmit}>
-          <FormGroup controlId="email" bsSize="large">
+          <FormGroup controlId="email">
             <FormControl
               autoFocus
+              name="email"
               placeholder="email"
               type="email"
               value={this.state.email}
               onChange={this.handleChange}
             />
           </FormGroup>
-          <FormGroup controlId="password" bsSize="large">
+          <FormGroup controlId="password">
             <FormControl
+              name="password"
               placeholder="password"
               type="password"
               value={this.state.password}
@@ -43,9 +48,9 @@ export default class Login extends React.Component {
             />
           </FormGroup>
           <Button
-            bsSize="medium"
             disabled={!this.validateForm()}
             type="submit"
+            onClick={this.handleSubmit}
           >
             Login
           </Button>
