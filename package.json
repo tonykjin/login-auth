@@ -25,14 +25,18 @@
   "homepage": "https://github.com/tonykjin/login-auth#readme",
   "dependencies": {
     "argon2": "^0.25.0",
+    "connect-redis": "^4.0.3",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
+    "express-session": "^1.16.2",
     "mssql": "^5.1.0",
     "next": "^9.1.1",
+    "promise-retry": "^1.1.1",
     "react": "^16.10.2",
     "react-bootstrap": "^1.0.0-beta.14",
     "react-dom": "^16.10.2",
     "reactstrap": "^8.0.1",
+    "redis": "^2.8.0",
     "sequelize": "^5.19.4",
     "tedious": "^6.4.0"
   },

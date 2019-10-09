@@ -1,22 +1,28 @@
-const express = require('express');
+const createServer = require('./create-server');
+const getConnections = require('./lib/get-connections');
 const db = require('../models/index');
 
-const PORT = process.env.PORT || 8080;
+require('dotenv').config();
 
-const app = express();
+(async () => {
+  try {
+    const { redis, sequelize } = await getConnections();
+    console.log('Connection established');
 
-const newUser = require('./routes/user_registration');
-
-app.use((err, req, res, next) => {
-  res.sendStatus(500);
-  console.log(err);
-  if (err.fatal) {
+    const server = await createServer({ db, redis });
+    server.listen(process.env.PORT, () => {
+      console.log(`Server listening on port ${process.env.PORT}`);
+    });
+    sequelize
+      .authenticate()
+      .then(() => {
+        console.log('DB Connection established successfully');
+      })
+      .catch(err => {
+        console.error('unable to connect to db', err);
+      });
+  } catch (err) {
+    console.error(err);
     process.exit(1);
   }
-});
-
-app.listen(PORT, () => {
-  console.log(`Running on http://localhost:${PORT}`);
-});
-
-app.use('/new', newUser(db));
+})();
