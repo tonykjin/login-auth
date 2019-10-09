@@ -1,6 +1,12 @@
+import Link from 'next/link';
+import Header from './header';
+
 const Home = () => {
   return (
-    <div> Base - Master branch </div>
+    <div>
+      <Header/>
+      Welcome to login-auth!
+    </div>
   )
 }
 
