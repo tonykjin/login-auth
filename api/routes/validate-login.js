@@ -15,8 +15,11 @@ module.exports = ({ db, redis }) => {
         attributes: ['hashedPassword']
       }).then(data => data[0].dataValues.hashedPassword);
       if (await argon2.verify(hashedPassword, password)) {
-        sessionMiddleware({ redis });
-        return res.status(202);
+        const session = sessionMiddleware({ redis });
+        return res.status(202).send({
+          status: 200,
+          session,
+        });
       } else {
         return res.status(401).send();
       }
